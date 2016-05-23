@@ -9,6 +9,10 @@ package model;
  *
  * @author Frank
  */
-public class Speler {
+public class Speler extends Spelobject{
+    
+    public Speler(int xPositie, int yPositie) {
+        super(xPositie, yPositie);
+    }
     
 }

@@ -11,4 +11,13 @@ package model;
  */
 public class Spelobject {
     
+    private int xPositie;
+    private int yPositie;
+    
+    public Spelobject(int xPositie, int yPositie)
+    {
+        this.xPositie = xPositie;
+        this.yPositie = yPositie;
+    }
+    
 }

@@ -9,6 +9,11 @@ package model;
  *
  * @author Frank
  */
-public class Muur {
+public class Muur extends Spelobject{
+    
+    public Muur(int xPositie, int yPositie) {
+        super(xPositie, yPositie);
+    }
+    
     
 }
