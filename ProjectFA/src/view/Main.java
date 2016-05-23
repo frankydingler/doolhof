@@ -5,11 +5,26 @@
  */
 package view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Frank
  */
 public class Main {
-    //hello
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setTitle("Doolhof Frank & Amit");
+        frame.setSize(1000,800);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+        Spelpaneel spelpaneel = new Spelpaneel();
+        frame.add(spelpaneel);
+        frame.setVisible(true);
+    }
     
 }
