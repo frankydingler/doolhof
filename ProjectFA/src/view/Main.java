@@ -23,6 +23,8 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
         Spelpaneel spelpaneel = new Spelpaneel();
+        spelpaneel.setFocusable(true);
+        spelpaneel.requestFocus();
         frame.add(spelpaneel);
         frame.setVisible(true);
     }
