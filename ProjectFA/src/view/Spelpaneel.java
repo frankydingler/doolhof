@@ -32,7 +32,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         public Spelpaneel()
         {
             
-            requestFocus();
+           requestFocus();
            objectlijst = new Spelobject[10][10];
            setSize(1000,600);
            setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
@@ -274,5 +274,9 @@ public class Spelpaneel extends JPanel implements KeyListener
         this.grabFocus();
     }
     
-
+    public void counter()
+    {
+        
+    }
+            
 }
