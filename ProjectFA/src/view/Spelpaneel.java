@@ -37,11 +37,37 @@ public class Spelpaneel extends JPanel implements KeyListener
            maakLijst();
         }
         
-        private void maakLijst() //dit is eigenlijk maak level
+        private void maakLijst() //dit is eigenlijk maak level tekenen van hokjes
         { 
-            Muur muur = new Muur(0,0);
-            objectlijst [0][0] = muur;
+            Muur muur1 = new Muur(0,0);
+            objectlijst [0][0] = muur1;
             
+            Muur muur2 = new Muur(0,2);
+            objectlijst [0][2] = muur2;
+            
+            Muur muur3 = new Muur(0,4);
+            objectlijst [0][4] = muur3;
+            
+            Muur muur4 = new Muur(0,6);
+            objectlijst [0][0] = muur4;
+            
+            Muur muur5 = new Muur(0,0);
+            objectlijst [0][0] = muur5;
+            
+            Muur muur6 = new Muur(0,0);
+            objectlijst [0][0] = muur6;
+            
+            Muur muur7 = new Muur(0,0);
+            objectlijst [0][0] = muur7;
+            
+            Muur muur8 = new Muur(0,0);
+            objectlijst [0][0] = muur8;
+            
+            Muur muur9 = new Muur(0,0);
+            objectlijst [0][0] = muur9;
+            
+            Muur muur10 = new Muur(0,0);
+            objectlijst [0][0] = muur10;
         }
 
     @Override
