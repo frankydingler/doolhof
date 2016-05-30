@@ -21,9 +21,12 @@ public class Main {
         frame.setTitle("Doolhof Frank & Amit");
         frame.setSize(1000,800);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
         Spelpaneel spelpaneel = new Spelpaneel();
-        spelpaneel.setFocusable(true);
+        Menupaneel menupaneel = new Menupaneel(spelpaneel);
+          
+        //frame.add(menupaneel);
+        spelpaneel.setFocusable(true);  
         spelpaneel.requestFocus();
         frame.add(spelpaneel);
         frame.setVisible(true);

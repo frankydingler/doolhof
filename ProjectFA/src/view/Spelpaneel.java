@@ -25,6 +25,7 @@ import model.Spelobject;
 public class Spelpaneel extends JPanel implements KeyListener
 {
         private Spelobject[][] objectlijst;
+        private int xpos,ypos;
         
         public Spelpaneel()
         {
@@ -38,7 +39,7 @@ public class Spelpaneel extends JPanel implements KeyListener
            setBackground(Color.yellow);
         }
         
-        private void maakLijst()
+        private void maakLijst() //dit is eigenlijk maak level
         { 
             Muur muur = new Muur(0,0);
             objectlijst [0][0] = muur;
@@ -56,7 +57,7 @@ public class Spelpaneel extends JPanel implements KeyListener
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            JOptionPane.showMessageDialog(this, "hallo");
+        //    beweeg();
         }
     }
 
@@ -76,14 +77,19 @@ public class Spelpaneel extends JPanel implements KeyListener
                 try
                 {
                     if(objectlijst[x][y] instanceof Muur)
-                {
-                    System.out.println("    jaaaa");
-                    g.fillOval(x*40+300, y*40+300, 40, 40);
-                }
+                    {
+                        g.setColor(Color.GRAY);
+                        g.fillRect(x*40+300, y*40+300, 40, 40);
+                        g.setColor(Color.BLACK);
+                    }
+                    else
+                    {                       
+                        g.drawRect(x*40+300, y*40+300, 40, 40);
+                    }
                 }
                 catch(Exception e)
                 {
-                    g.drawRect(x*40+300, y*40+300, 40, 40);
+                    
                 }
                  
                 
