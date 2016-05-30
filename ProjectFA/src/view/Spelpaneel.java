@@ -53,7 +53,7 @@ public class Spelpaneel extends JPanel implements KeyListener
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            beweeg();
+        //    beweeg();
         }
     }
 
