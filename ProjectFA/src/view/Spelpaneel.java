@@ -28,6 +28,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         private Spelobject[][] objectlijst;
         private int xpos,ypos;
         private Speler speler;
+        private int counter;
         
         public Spelpaneel()
         {
@@ -39,11 +40,13 @@ public class Spelpaneel extends JPanel implements KeyListener
            addKeyListener(this);
            maakLijst();
            setBackground(Color.yellow);
+           counter = 0;
+           
         }
         
         private void maakLijst() //dit is eigenlijk maak level tekenen van hokjes
         { 
-                speler = new Speler(1,1); // naar beneden links
+                speler = new Speler(1,1);
                 objectlijst[1][1] = speler;
 
             
@@ -147,6 +150,7 @@ public class Spelpaneel extends JPanel implements KeyListener
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
         {
+           counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -165,6 +169,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         if(ke.getKeyCode() == KeyEvent.VK_LEFT)
         {
+            counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -183,6 +188,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         if(ke.getKeyCode() == KeyEvent.VK_UP)
         {
+            counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -201,6 +207,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         if(ke.getKeyCode() == KeyEvent.VK_DOWN)
         {
+            counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -228,7 +235,7 @@ public class Spelpaneel extends JPanel implements KeyListener
     {
         super.paintComponent(g);
         g.setColor(Color.black);
-        g.drawString("Hallo", 20, 20);
+        g.drawString("Aantal stappen" + counter, 20, 20);
         
         for(int x = 0; x < 10; x++) //zoeken in 2D array
         {
@@ -276,9 +283,4 @@ public class Spelpaneel extends JPanel implements KeyListener
         this.grabFocus();
     }
     
-    public void counter()
-    {
-        
-    }
-            
 }
