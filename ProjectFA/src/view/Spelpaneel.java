@@ -228,6 +228,7 @@ public class Spelpaneel extends JPanel implements KeyListener
     {
         super.paintComponent(g);
         g.setColor(Color.black);
+        g.drawString("Hallo", 20, 20);
         
         for(int x = 0; x < 10; x++) //zoeken in 2D array
         {
@@ -239,24 +240,25 @@ public class Spelpaneel extends JPanel implements KeyListener
                     {
                         
                         g.setColor(Color.GRAY);
-                        g.fillRect(x*40+300, y*40+300, 40, 40);
+                        g.fillRect(x*40+300, y*40+50, 40, 40);
                         g.setColor(Color.BLACK);
-                        g.drawRect(x*40+300, y*40+300, 40, 40);
+                        g.drawRect(x*40+300, y*40+50, 40, 40);
                     }
                     else if(objectlijst[x][y] instanceof Speler)
                     {
-                        g.drawRect(x*40+300, y*40+300, 40, 40);
+                        
                         g.setColor(Color.red);
-                        g.fillOval(x*40+300, y*40+300, 40, 40);
+                        g.fillOval(x*40+300, y*40+50, 38, 38);
                         g.setColor(Color.BLACK);
-                        g.fillOval(x*40+308, y*40+308, 10, 10);
-                        g.fillOval(x*40+322, y*40+308, 10, 10);
-                        g.fillRect(x*40+308, y*40+325, 24, 3);
+                        
+                        g.fillOval(x*40+308, y*40+58, 10, 10);
+                        g.fillOval(x*40+322, y*40+58, 10, 10);
+                        g.fillRect(x*40+308, y*40+75, 24, 3);
                         
                     }
                     else
                     {                       
-                        g.drawRect(x*40+300, y*40+300, 40, 40);
+                        
                     }
                 }
                 catch(Exception e)
