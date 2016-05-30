@@ -29,6 +29,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         private Spelobject[][] objectlijst;
         private Speler speler;
         private int counter;
+        private boolean gebruikBazooka;
         
         public Spelpaneel()
         {
