@@ -11,11 +11,24 @@ package model;
  */
 public class Speler extends Spelobject
 {
+    private boolean bazooka;
+
+    public boolean getBaazoka() 
+    {
+        return bazooka;
+    }
+
+    public void setBaazoka(boolean baazoka) 
+    {
+        this.bazooka = baazoka;
+    }
     
     public Speler(int xPositie, int yPositie) 
     {
         super(xPositie, yPositie);
     }
+    
+    
     
     
     

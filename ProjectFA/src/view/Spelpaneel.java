@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+import model.Bazooka;
 import model.Muur;
 import model.Speler;
 import model.Spelobject;
@@ -26,12 +27,12 @@ import model.Spelobject;
 public class Spelpaneel extends JPanel implements KeyListener
 {
         private Spelobject[][] objectlijst;
-        private int xpos,ypos;
         private Speler speler;
+        private boolean gebruikBazooka;
         
         public Spelpaneel()
         {
-            
+            gebruikBazooka = false;
             requestFocus();
            objectlijst = new Spelobject[10][10];
            setSize(1000,600);
@@ -45,6 +46,9 @@ public class Spelpaneel extends JPanel implements KeyListener
         { 
                 speler = new Speler(1,1); // naar beneden links
                 objectlijst[1][1] = speler;
+                
+                Bazooka bazooka = new Bazooka(1,8);
+                objectlijst[1][8] = bazooka;
 
             
             //for loop, teken muur, mag niet groter zijn dan 9 en i++
@@ -152,13 +156,24 @@ public class Spelpaneel extends JPanel implements KeyListener
            
            if(objectlijst[x+1][y] instanceof Muur)
            {
-               
+               if(gebruikBazooka)
+               {
+                   objectlijst[x+1][y] = null;
+                   speler.setBaazoka(false);
+                   repaint();
+                   gebruikBazooka = false;
+               }
            }
            else
            {
+              if(objectlijst[x+1][y] instanceof Bazooka)
+              {
+                  speler.setBaazoka(true);
+              }
               objectlijst[x+1][y] = speler;
               objectlijst[x][y] = null; 
               speler.setXPositie(x+1);
+
               repaint();
            }
            
@@ -170,16 +185,35 @@ public class Spelpaneel extends JPanel implements KeyListener
            
            if(objectlijst[x-1][y] instanceof Muur)
            {
+               if(gebruikBazooka)
+               {
+                   objectlijst[x-1][y] = null;
+                   speler.setBaazoka(false);
+                   repaint();
+                   gebruikBazooka = false;
+               }
                
            }
            else
            {
+              if(objectlijst[x-1][y] instanceof Bazooka)
+              {
+                  speler.setBaazoka(true);
+              }
               objectlijst[x-1][y] = speler;
               objectlijst[x][y] = null; 
-              speler.setXPositie(x-1);
+              speler.setXPositie(x-1);             
               repaint();
            }
            
+        }
+        if(ke.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            if(speler.getBaazoka())
+               {
+                   gebruikBazooka = true;
+               }
+  
         }
         if(ke.getKeyCode() == KeyEvent.VK_UP)
         {
@@ -188,13 +222,24 @@ public class Spelpaneel extends JPanel implements KeyListener
            
            if(objectlijst[x][y-1] instanceof Muur)
            {
-               
+             if(gebruikBazooka)
+               {
+                   objectlijst[x][y-1] = null;
+                   speler.setBaazoka(false);
+                   repaint();
+                   gebruikBazooka = false;
+               }
            }
            else
            {
+              if(objectlijst[x][y-1] instanceof Bazooka)
+              {
+                  speler.setBaazoka(true);
+              }
               objectlijst[x][y-1] = speler;
               objectlijst[x][y] = null; 
               speler.setYPositie(y-1);
+
               repaint();
            }
            
@@ -206,13 +251,24 @@ public class Spelpaneel extends JPanel implements KeyListener
            
            if(objectlijst[x][y+1] instanceof Muur)
            {
-               
+               if(gebruikBazooka)
+               {
+                   objectlijst[x][y+1] = null;
+                   speler.setBaazoka(false);
+                   repaint();
+                   gebruikBazooka = false;
+               }
            }
            else
            {
+              if(objectlijst[x][y+1] instanceof Bazooka)
+              {
+                  speler.setBaazoka(true);
+              }
               objectlijst[x][y+1] = speler;
               objectlijst[x][y] = null; 
               speler.setYPositie(y+1);
+
               repaint();
            }
            
@@ -247,14 +303,32 @@ public class Spelpaneel extends JPanel implements KeyListener
                     else if(objectlijst[x][y] instanceof Speler)
                     {
                         
-                        g.setColor(Color.red);
+                        if(speler.getBaazoka())
+                        {
+                            g.setColor(Color.green); 
+                        }
+                        else
+                        {
+                           g.setColor(Color.red); 
+                        }
+                        
                         g.fillOval(x*40+300, y*40+50, 38, 38);
                         g.setColor(Color.BLACK);
-                        
+                        if(speler.getBaazoka())
+                        {
+                            g.setColor(Color.yellow);
+                        }
                         g.fillOval(x*40+308, y*40+58, 10, 10);
                         g.fillOval(x*40+322, y*40+58, 10, 10);
                         g.fillRect(x*40+308, y*40+75, 24, 3);
-                        
+                        g.setColor(Color.BLACK);
+                    }
+                    else if(objectlijst[x][y] instanceof Bazooka)
+                    {
+                        g.setColor(Color.darkGray);
+                        g.fillRect(x*40+308, y*40+58, 8, 28);
+                        g.fillOval(x*40+308, y*40+58, 28, 18);
+                        g.setColor(Color.BLACK);
                     }
                     else
                     {                       
