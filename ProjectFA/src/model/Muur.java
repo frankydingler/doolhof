@@ -5,15 +5,28 @@
  */
 package model;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
 /**
  *
- * @author Frank
+ * @author Amit
  */
 public class Muur extends Spelobject{
     
+    BufferedImage image;
+    
     public Muur(int xPositie, int yPositie) {
         super(xPositie, yPositie);
-    }
-    
-    
+  /*      
+        try{
+            setImage(ImageIO.read(new File("src/doolhofplaatjes/muur.png")));
+        }
+        catch(Exception e) {
+            System.out.println(e + " fout bij inladen van de image.");
+        }
+ */
+    } 
 }
+    

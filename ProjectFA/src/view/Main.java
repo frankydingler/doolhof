@@ -26,7 +26,7 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
         Spelpaneel spelpaneel = new Spelpaneel();
-        Menupaneel menupaneel = new Menupaneel(spelpaneel);
+        Menupaneel menupaneel = new Menupaneel(spelpaneel);          
         spelpaneel.setFocusable(true);  
         frame.add(menupaneel, BorderLayout.NORTH);
         frame.add(spelpaneel, BorderLayout.CENTER);      
