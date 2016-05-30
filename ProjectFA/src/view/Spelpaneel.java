@@ -9,9 +9,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 import model.Muur;
 import model.Speler;
 import model.Spelobject;
@@ -26,12 +28,14 @@ public class Spelpaneel extends JPanel implements KeyListener
         
         public Spelpaneel()
         {
+            
+            requestFocus();
            objectlijst = new Spelobject[10][10];
            setSize(1000,600);
-           JLabel label = new JLabel("hallo");
+           setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
            addKeyListener(this);
-           add(label);
            maakLijst();
+           setBackground(Color.yellow);
         }
         
         private void maakLijst()
@@ -40,6 +44,8 @@ public class Spelpaneel extends JPanel implements KeyListener
             objectlijst [0][0] = muur;
             
         }
+        
+        
 
     @Override
     public void keyTyped(KeyEvent ke) {
@@ -60,8 +66,8 @@ public class Spelpaneel extends JPanel implements KeyListener
     
     public void paintComponent(Graphics g)
     {
+        super.paintComponent(g);
         g.setColor(Color.black);
-        g.fillOval(20, 20, 20, 20);
         
         for(int x = 0; x < 10; x++) //zoeken in 2D array
         {
@@ -72,12 +78,12 @@ public class Spelpaneel extends JPanel implements KeyListener
                     if(objectlijst[x][y] instanceof Muur)
                 {
                     System.out.println("    jaaaa");
-                    g.fillOval(x*40+100, y*40+100, 40, 40);
+                    g.fillOval(x*40+300, y*40+300, 40, 40);
                 }
                 }
                 catch(Exception e)
                 {
-                    g.drawRect(x*40+100, y*40+100, 40, 40);
+                    g.drawRect(x*40+300, y*40+300, 40, 40);
                 }
                  
                 
@@ -85,6 +91,5 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
     }
     
-           // Speler speler = new Speler();
-           // objectlijst[0][0] = speler;
+
 }
