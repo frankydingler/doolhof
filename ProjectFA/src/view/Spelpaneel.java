@@ -23,18 +23,21 @@ import model.Spelobject;
 public class Spelpaneel extends JPanel implements KeyListener
 {
         private Spelobject[][] objectlijst;
+        private int xpos,ypos;
         
         public Spelpaneel()
         {
+            xpos=0;
+            ypos=0;
            objectlijst = new Spelobject[10][10];
            setSize(1000,600);
-           JLabel label = new JLabel("hallo");
+           JLabel label = new JLabel("Level 1");
            addKeyListener(this);
            add(label);
            maakLijst();
         }
         
-        private void maakLijst()
+        private void maakLijst() //dit is eigenlijk maak level
         { 
             Muur muur = new Muur(0,0);
             objectlijst [0][0] = muur;
@@ -50,7 +53,7 @@ public class Spelpaneel extends JPanel implements KeyListener
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            JOptionPane.showMessageDialog(this, "hallo");
+            beweeg();
         }
     }
 
