@@ -9,9 +9,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EtchedBorder;
 import model.Muur;
 import model.Speler;
 import model.Spelobject;
@@ -27,48 +29,110 @@ public class Spelpaneel extends JPanel implements KeyListener
         
         public Spelpaneel()
         {
-            xpos=0;
-            ypos=0;
+            
+            requestFocus();
            objectlijst = new Spelobject[10][10];
            setSize(1000,600);
-           JLabel label = new JLabel("Level 1");
+           setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
            addKeyListener(this);
-           add(label);
            maakLijst();
+           setBackground(Color.yellow);
         }
         
         private void maakLijst() //dit is eigenlijk maak level tekenen van hokjes
         { 
-            Muur muur1 = new Muur(0,0);
-            objectlijst [0][0] = muur1;
+
             
-            Muur muur2 = new Muur(0,2);
-            objectlijst [0][2] = muur2;
+            //for loop, teken muur, mag niet groter zijn dan 9 en i++
             
-            Muur muur3 = new Muur(0,4);
-            objectlijst [0][4] = muur3;
+            for (int i = 0; i < 10; i++)
+            {
+                Muur muur1 = new Muur(0,i); // naar beneden links
+                objectlijst[0][i] = muur1;
+                
+                Muur muur2 = new Muur(9,i); // naar beneden rechts
+                objectlijst[9][i] = muur2;
+                
+                Muur muur3 = new Muur(i,0); // naar rechts boven
+                objectlijst[i][0] = muur3;
+                
+                Muur muur4 = new Muur(i,9); // naar rechts beneden
+                objectlijst[i][9] = muur4;
+                
+            }                    
             
-            Muur muur4 = new Muur(0,6);
-            objectlijst [0][0] = muur4;
+            for (int i = 1; i < 2; i++) // blokken van 3 in het midden
+            {
+                Muur muur1 = new Muur(4,i); // naar beneden links
+                objectlijst[4][i] = muur1;
+                
+                Muur muur2 = new Muur(7,i); // naar beneden rechts
+                objectlijst[7][i] = muur2;
+                
+                Muur muur3 = new Muur(i,5); // naar rechts boven
+                objectlijst[i][5] = muur3;
+                
+                Muur muur4 = new Muur(i,7); // naar rechts beneden
+                objectlijst[i][7] = muur4;
+                
+                Muur muur5 = new Muur(i,2); // naar rechts beneden
+                objectlijst[i][2] = muur5;
+                
+
+            }                    
             
-            Muur muur5 = new Muur(0,0);
-            objectlijst [0][0] = muur5;
+            for (int i = 5; i < 7; i++) // blokken van 3 in het midden
+            {
+                Muur muur1 = new Muur(4,i); // naar beneden links
+                objectlijst[4][i] = muur1;
+                
+                Muur muur2 = new Muur(i,5); // naar beneden links
+                objectlijst[i][5] = muur2;
+                
+                Muur muur3 = new Muur(i,7); // naar beneden links
+                //objectlijst[i][7] = muur3;
+
+                
+            }
             
-            Muur muur6 = new Muur(0,0);
-            objectlijst [0][0] = muur6;
-            
-            Muur muur7 = new Muur(0,0);
-            objectlijst [0][0] = muur7;
-            
-            Muur muur8 = new Muur(0,0);
-            objectlijst [0][0] = muur8;
-            
-            Muur muur9 = new Muur(0,0);
-            objectlijst [0][0] = muur9;
-            
-            Muur muur10 = new Muur(0,0);
-            objectlijst [0][0] = muur10;
+                Muur muur1 = new Muur(7,7); 
+                objectlijst[7][7] = muur1;
+                
+                Muur muur2 = new Muur(5,2); 
+                objectlijst[5][2] = muur2;
+                
+                Muur muur3 = new Muur(3,7); 
+                objectlijst[3][7] = muur3;
+                
+                Muur muur4 = new Muur(7,3); 
+                objectlijst[7][3] = muur4;
+                
+                Muur muur5 = new Muur(8,4); 
+                objectlijst[8][4] = muur5;
+                
+                Muur muur6 = new Muur(5,8);
+                objectlijst[5][8] = muur6;
+                
+                Muur muur7 = new Muur(3,7); 
+                objectlijst[3][7] = muur7;
+                
+                Muur muur8 = new Muur(2,3); 
+                objectlijst[2][3] = muur8;
+                
+                Muur muur9 = new Muur(5,4); 
+                objectlijst[5][4] = muur9;
+                
+                Muur muur10 = new Muur(2,5); 
+                objectlijst[2][5] = muur10;
+                
+                Muur muur11 = new Muur(3,3); 
+                objectlijst[3][3] = muur11;
+                
+                Muur muur12 = new Muur(7,3); 
+                objectlijst[7][6] = muur12;
         }
+        
+        
 
     @Override
     public void keyTyped(KeyEvent ke) {
@@ -89,8 +153,8 @@ public class Spelpaneel extends JPanel implements KeyListener
     
     public void paintComponent(Graphics g)
     {
+        super.paintComponent(g);
         g.setColor(Color.black);
-        g.fillOval(20, 20, 20, 20);
         
         for(int x = 0; x < 10; x++) //zoeken in 2D array
         {
@@ -99,14 +163,19 @@ public class Spelpaneel extends JPanel implements KeyListener
                 try
                 {
                     if(objectlijst[x][y] instanceof Muur)
-                {
-                    System.out.println("    jaaaa");
-                    g.fillOval(x*40+100, y*40+100, 40, 40);
-                }
+                    {
+                        g.setColor(Color.GRAY);
+                        g.fillRect(x*40+300, y*40+300, 40, 40);
+                        g.setColor(Color.BLACK);
+                    }
+                    else
+                    {                       
+                        g.drawRect(x*40+300, y*40+300, 40, 40);
+                    }
                 }
                 catch(Exception e)
                 {
-                    g.drawRect(x*40+100, y*40+100, 40, 40);
+                    
                 }
                  
                 
@@ -114,6 +183,5 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
     }
     
-           // Speler speler = new Speler();
-           // objectlijst[0][0] = speler;
+
 }
