@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -32,12 +33,14 @@ public class KnopHandler implements ActionListener
         if(e.getSource() == menupaneel.getMaaklevel())
         {
             JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
             frame.setTitle("Levelmaker Frank & Amit");
-            frame.setSize(400,400);
+            frame.setSize(600,400);
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
             Levelmaker levelmaker = new Levelmaker();
-            frame.add(levelmaker);
+            levelmaker.setSize(400,400);
+            frame.add(levelmaker,BorderLayout.CENTER);
             frame.setVisible(true);
         }
         if(e.getSource() == menupaneel.getresetKnop())

@@ -45,6 +45,7 @@ public class Spelpaneel extends JPanel implements KeyListener
         { 
                 speler = new Speler(1,1); // naar beneden links
                 objectlijst[1][1] = speler;
+
             
             //for loop, teken muur, mag niet groter zijn dan 9 en i++
             
