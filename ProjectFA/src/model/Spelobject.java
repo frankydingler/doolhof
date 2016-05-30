@@ -20,4 +20,24 @@ public class Spelobject {
         this.yPositie = yPositie;
     }
     
+    public void setXPositie(int xPositie)
+    {
+        this.xPositie = xPositie;
+    }
+    
+    public void setYPositie(int yPositie)
+    {
+        this.yPositie = yPositie;
+    }
+    
+    public int getXPositie()
+    {
+        return xPositie;
+    }
+    
+    public int getYPositie()
+    {
+        return yPositie;
+    }
+    
 }

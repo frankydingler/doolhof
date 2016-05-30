@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
@@ -17,19 +18,20 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         JFrame frame = new JFrame();
+        frame.setLayout(new BorderLayout());
+        frame.setSize(1000, 800);
         frame.setTitle("Doolhof Frank & Amit");
-        frame.setSize(1000,800);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      
         Spelpaneel spelpaneel = new Spelpaneel();
         Menupaneel menupaneel = new Menupaneel(spelpaneel);
-          
-        //frame.add(menupaneel);
         spelpaneel.setFocusable(true);  
-        spelpaneel.requestFocus();
-        frame.add(spelpaneel);
+        frame.add(menupaneel, BorderLayout.NORTH);
+        frame.add(spelpaneel, BorderLayout.CENTER);      
         frame.setVisible(true);
+        spelpaneel.setFocus();
     }
     
 }
