@@ -7,6 +7,7 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
@@ -15,18 +16,21 @@ import javax.imageio.ImageIO;
  */
 public class Muur extends Spelobject{
     
-    BufferedImage image;
+    BufferedImage plaatje;
     
-    public Muur(int xPositie, int yPositie) {
+    public Muur(int xPositie, int yPositie) 
+    {
         super(xPositie, yPositie);
-  /*      
-        try{
-            setImage(ImageIO.read(new File("src/doolhofplaatjes/muur.png")));
+        
+         try {
+            plaatje = ImageIO.read(new File("doolhofPlaatjes//muur.png"));
+        } catch (IOException e) {
         }
-        catch(Exception e) {
-            System.out.println(e + " fout bij inladen van de image.");
-        }
- */
-    } 
+     } 
+    
+    public BufferedImage getPlaatje()
+    {
+        return plaatje;
+    }
 }
     

@@ -17,4 +17,11 @@ public class LevelmakerMenu extends JPanel
 {
     private JButton maakLevelKnop;
     private JRadioButton muurRadio, spelerRadio;
+    
+    public LevelmakerMenu()
+    {
+        maakLevelKnop = new JButton("add");
+        add(maakLevelKnop);
+    }
+    
 }

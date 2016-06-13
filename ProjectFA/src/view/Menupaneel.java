@@ -59,7 +59,7 @@ public class Menupaneel extends JPanel
     
     public JButton getresetKnop()
     {
-        return startKnop;
+        return resetKnop;
     }
     
     public JButton getMaaklevel()

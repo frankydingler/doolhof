@@ -14,21 +14,19 @@ import javax.imageio.ImageIO;
  *
  * @author Frank
  */
-public class Bazooka extends Spelobject
+public class Vriend extends Spelobject
 {
-    BufferedImage plaatje;
-    public Bazooka(int xPositie, int yPositie) 
-    {
+     BufferedImage plaatje;
+    public Vriend(int xPositie, int yPositie) {
         super(xPositie, yPositie);
         
-          try {
-            plaatje = ImageIO.read(new File("doolhofPlaatjes//bazooka.png"));
+         try {
+            plaatje = ImageIO.read(new File("doolhofPlaatjes//vriend.png"));
         } catch (IOException e) {
         }
-          
-          
     }
-   public BufferedImage getPlaatje()
+    
+      public BufferedImage getPlaatje()
     {
         return plaatje;
     }

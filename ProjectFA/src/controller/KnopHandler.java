@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import view.Levelmaker;
+import view.LevelmakerMenu;
 import view.Menupaneel;
 import view.Spelpaneel;
 
@@ -40,11 +41,14 @@ public class KnopHandler implements ActionListener
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
             Levelmaker levelmaker = new Levelmaker();
             levelmaker.setSize(400,400);
+            LevelmakerMenu levelmakerMenu = new LevelmakerMenu();
+            frame.add(levelmakerMenu,BorderLayout.EAST);
             frame.add(levelmaker,BorderLayout.CENTER);
             frame.setVisible(true);
         }
         if(e.getSource() == menupaneel.getresetKnop())
         {
+            menupaneel.getSpelpaneel().resetLevel();
             System.out.println("resetknop");
         }
         if(e.getSource() == menupaneel.getStartKnop())

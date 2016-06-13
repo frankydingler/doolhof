@@ -9,16 +9,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import model.Bazooka;
+import model.Helper;
 import model.Muur;
 import model.Speler;
 import model.Spelobject;
+import model.Vriend;
+import controller.LevelController;
 
 /**
  *
@@ -28,123 +29,33 @@ public class Spelpaneel extends JPanel implements KeyListener
 {
         private Spelobject[][] objectlijst;
         private Speler speler;
+        private Helper helper;
+        private Vriend vriend;
         private int counter;
         private boolean gebruikBazooka;
+        private BufferedImage plaatje;
+        private LevelController levelController;
         
         public Spelpaneel()
         {
+            levelController = new LevelController();
             gebruikBazooka = false;
-            requestFocus();
-           objectlijst = new Spelobject[10][10];
-           setSize(1000,600);
-           setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-           addKeyListener(this);
-           maakLijst();
-           setBackground(Color.yellow);
-           counter = 0;
-           
+            objectlijst = new Spelobject[10][10];
+            setSize(1000,600);
+            setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+            addKeyListener(this);
         }
         
-        private void maakLijst() //dit is eigenlijk maak level tekenen van hokjes
-        { 
-                speler = new Speler(1,1);
-                objectlijst[1][1] = speler;
-                
-                Bazooka bazooka = new Bazooka(1,8);
-                objectlijst[1][8] = bazooka;
 
-            
-            //for loop, teken muur, mag niet groter zijn dan 9 en i++
-            
-            for (int i = 0; i < 10; i++)
-            {
-                Muur muur1 = new Muur(0,i); // naar beneden links
-                objectlijst[0][i] = muur1;
-                
-                Muur muur2 = new Muur(9,i); // naar beneden rechts
-                objectlijst[9][i] = muur2;
-                
-                Muur muur3 = new Muur(i,0); // naar rechts boven
-                objectlijst[i][0] = muur3;
-                
-                Muur muur4 = new Muur(i,9); // naar rechts beneden
-                objectlijst[i][9] = muur4;
-                
-            }                    
-            
-            for (int i = 1; i < 2; i++) // blokken van 3 in het midden
-            {
-                Muur muur1 = new Muur(4,i); // naar beneden links
-                objectlijst[4][i] = muur1;
-                
-                Muur muur2 = new Muur(7,i); // naar beneden rechts
-                objectlijst[7][i] = muur2;
-                
-                Muur muur3 = new Muur(i,5); // naar rechts boven
-                objectlijst[i][5] = muur3;
-                
-                Muur muur4 = new Muur(i,7); // naar rechts beneden
-                objectlijst[i][7] = muur4;
-                
-                Muur muur5 = new Muur(i,2); // naar rechts beneden
-                objectlijst[i][2] = muur5;
-                
-
-            }                    
-            
-            for (int i = 5; i < 7; i++) // blokken van 3 in het midden
-            {
-                Muur muur1 = new Muur(4,i); // naar beneden links
-                objectlijst[4][i] = muur1;
-                
-                Muur muur2 = new Muur(i,5); // naar beneden links
-                objectlijst[i][5] = muur2;
-                
-                Muur muur3 = new Muur(i,7); // naar beneden links
-                //objectlijst[i][7] = muur3;
-
-                
-            }
-            
-                Muur muur1 = new Muur(7,7); 
-                objectlijst[7][7] = muur1;
-                
-                Muur muur2 = new Muur(5,2); 
-                objectlijst[5][2] = muur2;
-                
-                Muur muur3 = new Muur(3,7); 
-                objectlijst[3][7] = muur3;
-                
-                Muur muur4 = new Muur(7,3); 
-                objectlijst[7][3] = muur4;
-                
-                Muur muur5 = new Muur(8,4); 
-                objectlijst[8][4] = muur5;
-                
-                Muur muur6 = new Muur(5,8);
-                objectlijst[5][8] = muur6;
-                
-                Muur muur7 = new Muur(3,7); 
-                objectlijst[3][7] = muur7;
-                
-                Muur muur8 = new Muur(2,3); 
-                objectlijst[2][3] = muur8;
-                
-                Muur muur9 = new Muur(5,4); 
-                objectlijst[5][4] = muur9;
-                
-                Muur muur10 = new Muur(2,5); 
-                objectlijst[2][5] = muur10;
-                
-                Muur muur11 = new Muur(3,3); 
-                objectlijst[3][3] = muur11;
-                
-                Muur muur12 = new Muur(7,3); 
-                objectlijst[7][6] = muur12;
+        public void setFocus() 
+        {
+            this.grabFocus();
         }
         
-        
-
+        public void resetLevel()
+        {
+            
+        }
     @Override
     public void keyTyped(KeyEvent ke) {
         
@@ -204,6 +115,10 @@ public class Spelpaneel extends JPanel implements KeyListener
               if(objectlijst[x-1][y] instanceof Bazooka)
               {
                   speler.setBaazoka(true);
+              }
+              else if(objectlijst[x-1][y] instanceof Helper)
+              {
+                  
               }
               objectlijst[x-1][y] = speler;
               objectlijst[x][y] = null; 
@@ -287,74 +202,32 @@ public class Spelpaneel extends JPanel implements KeyListener
     public void keyReleased(KeyEvent ke) {
     }
     
-    public void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        g.setColor(Color.black);
-        g.drawString("Aantal stappen" + counter, 20, 20);
-        
-        for(int x = 0; x < 10; x++) //zoeken in 2D array
-        {
-            for(int y = 0; y< 10;y++) //zoeken in 2D array
+    public void paint(Graphics g){
+       super.paint(g);
+       g.setColor(Color.BLACK);
+        for (int y = 0; y < 14; y++)
+        { 
+            for (int x = 0; x < 14; x++)
             {
                 try
                 {
-                    if(objectlijst[x][y] instanceof Muur)
+                    if(levelController.getLevel(x , y).equals("g"))
                     {
-                        
-                        g.setColor(Color.GRAY);
-                        g.fillRect(x*40+300, y*40+50, 40, 40);
-                        g.setColor(Color.BLACK);
-                        g.drawRect(x*40+300, y*40+50, 40, 40);
+                        System.out.println("" + y+x);
+                       g.drawImage(levelController.getZand(), x * 32, y * 32, this);
                     }
-                    else if(objectlijst[x][y] instanceof Speler)
+                    if(levelController.getLevel(x , y).equals("w"))
                     {
-                        
-                        if(speler.getBaazoka())
-                        {
-                            g.setColor(Color.green); 
-                        }
-                        else
-                        {
-                           g.setColor(Color.red); 
-                        }
-                        
-                        g.fillOval(x*40+300, y*40+50, 38, 38);
-                        g.setColor(Color.BLACK);
-                        if(speler.getBaazoka())
-                        {
-                            g.setColor(Color.yellow);
-                        }
-                        g.fillOval(x*40+308, y*40+58, 10, 10);
-                        g.fillOval(x*40+322, y*40+58, 10, 10);
-                        g.fillRect(x*40+308, y*40+75, 24, 3);
-                        g.setColor(Color.BLACK);
-                    }
-                    else if(objectlijst[x][y] instanceof Bazooka)
-                    {
-                        g.setColor(Color.darkGray);
-                        g.fillRect(x*40+308, y*40+58, 8, 28);
-                        g.fillOval(x*40+308, y*40+58, 28, 18);
-                        g.setColor(Color.BLACK);
-                    }
-                    else
-                    {                       
-                        
+                        g.drawImage(levelController.getMuur(), x * 32, y * 32, this);
                     }
                 }
-                catch(Exception e)
-                {
-                    
-                }
-                 
+                catch(Exception e){}
                 
             }
         }
     }
-
-    public void setFocus() 
-    {
-        this.grabFocus();
-    }
+    
+    
+    
     
 }
