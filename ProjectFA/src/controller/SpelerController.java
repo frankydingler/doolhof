@@ -5,10 +5,23 @@
  */
 package controller;
 
+import model.Speler;
+import model.Vakje;
+
 /**
  *
  * @author Frank
  */
-public class SpelerController {
+public class SpelerController 
+{
+    private Speler speler;
+    Vakje[][] vakjes;
+    
+    public SpelerController(Speler speler, Vakje[][] vakjes)
+    {
+        this.speler = speler;
+        this.vakjes = vakjes;
+    }
+    
     
 }

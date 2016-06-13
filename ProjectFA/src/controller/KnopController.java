@@ -19,11 +19,11 @@ import view.Spelpaneel;
  *
  * @author Frank
  */
-public class KnopHandler implements ActionListener
+public class KnopController implements ActionListener
 {
     private Menupaneel menupaneel;
     
-    public KnopHandler(Menupaneel menupaneel)
+    public KnopController(Menupaneel menupaneel)
     {
         this.menupaneel = menupaneel;
     }

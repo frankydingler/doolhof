@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.KnopHandler;
+import controller.KnopController;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -32,7 +32,7 @@ public class Menupaneel extends JPanel
         resetKnop = new JButton("Reset");
         maaklevel = new JButton("Maak Level");
         
-        KnopHandler kh = new KnopHandler(this);
+        KnopController kh = new KnopController(this);
         
         
         maaklevel.addActionListener(kh);

@@ -16,19 +16,15 @@ import javax.imageio.ImageIO;
  */
 public class Vriend extends Spelobject
 {
-     BufferedImage plaatje;
-    public Vriend(int xPositie, int yPositie) {
-        super(xPositie, yPositie);
-        
-         try {
+
+    public Vriend() 
+    {
+        try {
             plaatje = ImageIO.read(new File("doolhofPlaatjes//vriend.png"));
         } catch (IOException e) {
         }
     }
     
-      public BufferedImage getPlaatje()
-    {
-        return plaatje;
-    }
+
     
 }

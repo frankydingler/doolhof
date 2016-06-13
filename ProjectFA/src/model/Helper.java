@@ -18,10 +18,10 @@ public class Helper extends Spelobject
 {   
     private Speler speler;
     private Vriend vriend;
-    BufferedImage plaatje;
-    public Helper(int xPositie, int yPositie, Speler speler, Vriend vriend) 
+
+    public Helper(Speler speler, Vriend vriend) 
     {
-        super(xPositie, yPositie);
+        
         this.speler = speler;
         this.vriend = vriend;
         
@@ -29,13 +29,10 @@ public class Helper extends Spelobject
             plaatje = ImageIO.read(new File("doolhofPlaatjes//helper.png"));
         } catch (IOException e) {
         }
+        
     }
     
-      public BufferedImage getPlaatje()
-    {
-        return plaatje;
-    }
-    
+   
     public void berekenOptimaleRoute()
     {
         

@@ -5,21 +5,19 @@
  */
 package view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-import model.Bazooka;
-import model.Helper;
-import model.Muur;
 import model.Speler;
-import model.Spelobject;
-import model.Vriend;
 import controller.LevelController;
+import controller.SpelerController;
+import model.Level;
+import model.Muur;
+import model.Spelobject;
+import model.Vakje;
 
 /**
  *
@@ -27,23 +25,21 @@ import controller.LevelController;
  */
 public class Spelpaneel extends JPanel implements KeyListener
 {
-        private Spelobject[][] objectlijst;
+        private Level level;
         private Speler speler;
-        private Helper helper;
-        private Vriend vriend;
-        private int counter;
-        private boolean gebruikBazooka;
-        private BufferedImage plaatje;
         private LevelController levelController;
+        private SpelerController spelerController;
         
         public Spelpaneel()
         {
-            levelController = new LevelController();
-            gebruikBazooka = false;
-            objectlijst = new Spelobject[10][10];
             setSize(1000,600);
             setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
             addKeyListener(this);
+            
+            speler = new Speler();
+            levelController = new LevelController();  
+            level = new Level(speler);
+            spelerController = new SpelerController(speler, level.getVakjes());
         }
         
 
@@ -60,12 +56,20 @@ public class Spelpaneel extends JPanel implements KeyListener
     public void keyTyped(KeyEvent ke) {
         
     }
+    
+        @Override
+    public void keyPressed(KeyEvent ke) {
+        
+    }
+
+    
+    /**
+ *
 
     @Override
     public void keyPressed(KeyEvent ke) {
         if(ke.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-           counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -95,7 +99,6 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         if(ke.getKeyCode() == KeyEvent.VK_LEFT)
         {
-            counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -137,7 +140,6 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         if(ke.getKeyCode() == KeyEvent.VK_UP)
         {
-            counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -167,7 +169,6 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         if(ke.getKeyCode() == KeyEvent.VK_DOWN)
         {
-            counter++;
            int x = speler.getXPositie();
            int y = speler.getYPositie();
            
@@ -197,29 +198,26 @@ public class Spelpaneel extends JPanel implements KeyListener
         }
         
     }
+    * 
+    *  * @author Frank
+ */
 
     @Override
     public void keyReleased(KeyEvent ke) {
     }
     
-    public void paint(Graphics g){
-       super.paint(g);
-       g.setColor(Color.BLACK);
-        for (int y = 0; y < 14; y++)
+        @Override
+    public void paintComponent(Graphics g){
+       super.paintComponent(g);
+       Vakje[][] vakjes = level.getVakjes();
+        for (int x = 0; x < 15; x++)
         { 
-            for (int x = 0; x < 14; x++)
+            for (int y = 0; y < 15; y++)
             {
                 try
                 {
-                    if(levelController.getLevel(x , y).equals("g"))
-                    {
-                        System.out.println("" + y+x);
-                       g.drawImage(levelController.getZand(), x * 32, y * 32, this);
-                    }
-                    if(levelController.getLevel(x , y).equals("w"))
-                    {
-                        g.drawImage(levelController.getMuur(), x * 32, y * 32, this);
-                    }
+                    g.drawImage(new Spelobject().getPlaatje(), x*40+200, y*40 +75, 40,40, this);
+                    g.drawImage(vakjes[x][y].getSpelObject().getPlaatje(), x*40+200, y*40 +75, 40,40, this);
                 }
                 catch(Exception e){}
                 

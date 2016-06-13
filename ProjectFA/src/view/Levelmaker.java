@@ -59,7 +59,7 @@ public class Levelmaker extends JPanel implements MouseListener
         int xpositie = (me.getX()-5) / 35;
         int ypositie = (me.getY()-45) / 35;
         
-        objectlijst[xpositie][ypositie] = new Muur(xpositie, ypositie);
+        //objectlijst[xpositie][ypositie] = new Muur(xpositie, ypositie);
         repaint();
     }
 

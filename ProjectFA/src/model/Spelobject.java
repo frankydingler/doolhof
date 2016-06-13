@@ -5,10 +5,10 @@
  */
 package model;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 /**
@@ -17,57 +17,23 @@ import javax.imageio.ImageIO;
  */
 public class Spelobject {
     
-    private int xPositie;
-    private int yPositie;
-    private HashMap buren;
-    private BufferedImage plaatje;
+    protected BufferedImage plaatje;
     
-    public Spelobject(int xPositie, int yPositie)
+    public Spelobject()
     {
-        this.xPositie = xPositie;
-        this.yPositie = yPositie;
         
-        buren = new HashMap();
-        
-         try {
-            plaatje = ImageIO.read(new File("doolhofPlaatjes//gras.png"));
+        try {
+            plaatje = ImageIO.read(new File("doolhofPlaatjes//zand.png"));
         } catch (IOException e) {
         }
+
     }
     
-    public void setBuur(String buur, Spelobject spelobject)
+    public Image getPlaatje()
     {
-        buren.put(buur, spelobject);
+       return plaatje; 
     }
     
-    public Spelobject getBuur(String buur)
-    {
-        return (Spelobject)buren.get(buur);
-    }
-    
-    public void setXPositie(int xPositie)
-    {
-        this.xPositie = xPositie;
-    }
-    
-    public void setYPositie(int yPositie)
-    {
-        this.yPositie = yPositie;
-    }
-    
-    public int getXPositie()
-    {
-        return xPositie;
-    }
-    
-    public int getYPositie()
-    {
-        return yPositie;
-    }
-    
-    public BufferedImage getPlaatje()
-    {
-        return plaatje;
-    }
+   
     
 }

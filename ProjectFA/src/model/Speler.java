@@ -5,10 +5,11 @@
  */
 package model;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+
 
 /**
  *
@@ -16,9 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class Speler extends Spelobject
 {
-    private boolean bazooka;
-    BufferedImage plaatje, plaatjeBazooka;
-    
+    private boolean bazooka;    
 
     public boolean getBaazoka() 
     {
@@ -31,34 +30,15 @@ public class Speler extends Spelobject
         this.bazooka = baazoka;
     }
     
-    public Speler(int xPositie, int yPositie) 
+    public Speler() 
     {
-        super(xPositie, yPositie);
-        
-         try {
+        try {
             plaatje = ImageIO.read(new File("doolhofPlaatjes//speler.png"));
-        } catch (IOException e) {
-        }
-         try {
-            plaatjeBazooka = ImageIO.read(new File("doolhofPlaatjes//spelerBazooka.png"));
         } catch (IOException e) {
         }
          
     }
-    
-     public BufferedImage getPlaatje()
-    {
-        if(bazooka)
-            return plaatjeBazooka;
-        else
-        return plaatje;
-    }
-    
-    
-    
-    
-    
-    
+
     
     
 }

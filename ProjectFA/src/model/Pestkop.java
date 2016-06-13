@@ -9,22 +9,17 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
 /**
  *
  * @author Frank
  */
-public class Bazooka extends Spelobject
-{
-
-    public Bazooka() 
-    {
-     try {
-            plaatje = ImageIO.read(new File("doolhofPlaatjes//bazooka.png"));
+public class Pestkop extends Spelobject{
+        public Pestkop()
+        {
+            try {
+            plaatje = ImageIO.read(new File("doolhofPlaatjes//pestkop.png"));
         } catch (IOException e) {
         }
-          
-    }
-   
+        }
     
 }

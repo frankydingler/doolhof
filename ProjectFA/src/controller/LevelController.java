@@ -22,32 +22,18 @@ public class LevelController
     private String[] level;
     private String huidigLevel;
     
-    private BufferedImage spelerPlaatje, muurPlaatje ,zandPlaatje;
     
     public LevelController()
     {
-        level = new String[14];
+        level = new String[15];
         huidigLevel = "level1";
         
-        try {
-            spelerPlaatje = ImageIO.read(new File("doolhofPlaatjes//speler.png"));
-        } catch (IOException e) {
-        }
-        
-        try {
-            muurPlaatje = ImageIO.read(new File("doolhofPlaatjes//muur.png"));
-        } catch (IOException e) {
-        }
-        
-        try {
-            zandPlaatje = ImageIO.read(new File("doolhofPlaatjes//zand.png"));
-        } catch (IOException e) {
-        }
         
         
         laadLevel();
         setLevel();
     }
+    
     
     public void setHuidigLevel(String huidigLevel)
     {
@@ -72,7 +58,7 @@ public class LevelController
     
     public void setLevel(){
         while(scanner.hasNext()){
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 15; i++)
             {
                 level[i] = scanner.next();
             }
@@ -85,13 +71,4 @@ public class LevelController
         return index;
     }
     
-    public Image getZand()
-    {
-        return zandPlaatje;
-    }
-    
-    public Image getMuur()
-    {
-        return muurPlaatje;
-    }
 }
